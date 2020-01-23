@@ -1,0 +1,13 @@
+div.cuadro {
+    background-color: #EFC050;
+    display: flex;
+    padding: 1rem;
+    height: 4rem;
+    width: 4rem;
+    p {
+        color: #45B8AC;
+        &:hover {
+            color:#DD4124;
+        }
+    }
+}

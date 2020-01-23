@@ -3,8 +3,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-// 
-import autoPreprocess from 'svelte-preprocess';
+// sass
+import scss from 'rollup-plugin-scss';
 // 
 
 const production = !process.env.ROLLUP_WATCH;
@@ -27,7 +27,7 @@ export default {
 				css.write('public/build/bundle.css');
 			}
 		}),
-
+		
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration —
@@ -38,21 +38,21 @@ export default {
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 		}),
 		commonjs(),
-
+		
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!production && serve(),
-
+		
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
 		!production && livereload('public'),
-
+		
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		production && terser(),
-		//
 		//custom
-		preprocess: autoPreprocess()
+		scss()
+		//
 	],
 	watch: {
 		clearScreen: false
@@ -61,7 +61,7 @@ export default {
 
 function serve() {
 	let started = false;
-
+	
 	return {
 		writeBundle() {
 			if (!started) {

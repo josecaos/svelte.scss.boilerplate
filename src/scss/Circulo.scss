@@ -1,0 +1,13 @@
+div.circulo {
+    background-color: #955251;
+    display: flex;
+    border-radius: 3rem;
+    padding: 1rem;
+    height: 4rem;
+    width: 4rem;
+    p {
+        &:hover {
+            color: #009B77;
+        }
+    }
+}
